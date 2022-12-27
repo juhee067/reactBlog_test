@@ -41,6 +41,11 @@ function App() {
     copy.splice(i, 1);
     setContent(copy);
   };
+  const changeContent = (i) => {
+    let copy = [...content];
+    copy[i] = "수정한 콘텐츠";
+    setContent(copy);
+  };
   return (
     <div className="App">
       {content.map((a, i) => {
@@ -60,11 +65,18 @@ function App() {
             </h1>
             <p>2월 17일 발행</p>
             <button
-              onClick={(i) => {
+              onClick={() => {
                 deleteContent(i);
               }}
             >
               글 삭제
+            </button>
+            <button
+              onClick={() => {
+                changeContent(i);
+              }}
+            >
+              글수정
             </button>
           </div>
         );
