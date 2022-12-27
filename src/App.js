@@ -13,7 +13,7 @@ function App() {
   // useEffect(() => {
 
   // }, [input]);
-  const addContentBtn = () => {
+  const addContent = () => {
     let goodCopy = [...good];
     goodCopy.unshift(0);
     setGood(goodCopy);
@@ -27,19 +27,23 @@ function App() {
     setContent(copy);
     // return input == "" ? titleInputRef.current.focus() : setInput("");
   };
+
+  // let number = 10
+  // add(number) === 11 ? start() : remove()
+
+  const goodBtn = (i) => {
+    let copy = [...good];
+    copy[i]++;
+    setGood(copy);
+  };
+  const deleteContent = (i) => {
+    let copy = [...content];
+    copy.splice(i, 1);
+    setContent(copy);
+  };
   return (
     <div className="App">
       {content.map((a, i) => {
-        const goodBtn = () => {
-          let copy = [...good];
-          copy[i]++;
-          setGood(copy);
-        };
-        const deleteContent = () => {
-          let copy = [...content];
-          copy.splice(i, 1);
-          setContent(copy);
-        };
         return (
           <div className="content" key={i}>
             <h1>
@@ -47,7 +51,7 @@ function App() {
 
               <button
                 onClick={() => {
-                  goodBtn();
+                  goodBtn(i);
                 }}
               >
                 👍🏻
@@ -57,7 +61,7 @@ function App() {
             <p>2월 17일 발행</p>
             <button
               onClick={(i) => {
-                deleteContent();
+                deleteContent(i);
               }}
             >
               글 삭제
@@ -75,7 +79,7 @@ function App() {
       ></input>
       <button
         onClick={() => {
-          addContentBtn();
+          addContent();
         }}
       >
         글발행
