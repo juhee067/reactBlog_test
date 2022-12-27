@@ -13,9 +13,15 @@ function App() {
   // useEffect(() => {
 
   // }, [input]);
+
   return (
     <div className="App">
       {content.map((a, i) => {
+        const goodBtn = () => {
+          let copy = [...good];
+          copy[i]++;
+          setGood(copy);
+        };
         return (
           <div className="content" key={i}>
             <h1>
@@ -23,9 +29,7 @@ function App() {
 
               <button
                 onClick={() => {
-                  let copy = [...good];
-                  copy[i]++;
-                  setGood(copy);
+                  goodBtn();
                 }}
               >
                 👍🏻
