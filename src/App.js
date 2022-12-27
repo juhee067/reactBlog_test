@@ -2,12 +2,13 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
-  let [content, setTitle] = useState([
+  let [content, setContent] = useState([
     "남자코트추천",
     "여자코트추천",
     "엄마코트추천",
   ]);
   let [good, setGood] = useState([0, 0, 0]);
+  let [input, setInput] = useState();
   return (
     <div className="App">
       {content.map((a, i) => {
@@ -31,6 +32,25 @@ function App() {
           </div>
         );
       })}
+      <input
+        className="blank"
+        onChange={(e) => {
+          setInput(e.target.value);
+        }}
+      ></input>
+      <button
+        onClick={(e) => {
+          let copy = [...content];
+          copy.unshift(input);
+          setContent(copy);
+          let goodCopy = [...good];
+          goodCopy.unshift(0);
+          setGood(goodCopy);
+        }}
+      >
+        글발행
+      </button>
+      {input.value == null ? <div>ss</div> : null}
     </div>
   );
 }
