@@ -13,7 +13,20 @@ function App() {
   // useEffect(() => {
 
   // }, [input]);
-
+  const addContentBtn = () => {
+    let goodCopy = [...good];
+    goodCopy.unshift(0);
+    setGood(goodCopy);
+    if (input == "") {
+      return titleInputRef.current.focus();
+    } else {
+      setInput("");
+    }
+    let copy = [...content];
+    copy.unshift(input);
+    setContent(copy);
+    // return input == "" ? titleInputRef.current.focus() : setInput("");
+  };
   return (
     <div className="App">
       {content.map((a, i) => {
@@ -21,6 +34,11 @@ function App() {
           let copy = [...good];
           copy[i]++;
           setGood(copy);
+        };
+        const deleteContent = () => {
+          let copy = [...content];
+          copy.splice(i, 1);
+          setContent(copy);
         };
         return (
           <div className="content" key={i}>
@@ -39,9 +57,7 @@ function App() {
             <p>2월 17일 발행</p>
             <button
               onClick={(i) => {
-                let copy = [...content];
-                copy.splice(i, 1);
-                setContent(copy);
+                deleteContent();
               }}
             >
               글 삭제
@@ -58,15 +74,8 @@ function App() {
         ref={titleInputRef}
       ></input>
       <button
-        onClick={(e) => {
-          let copy = [...content];
-          copy.unshift(input);
-          setContent(copy);
-          let goodCopy = [...good];
-          goodCopy.unshift(0);
-          setGood(goodCopy);
-
-          return input == "" ? titleInputRef.current.focus() : setInput("");
+        onClick={() => {
+          addContentBtn();
         }}
       >
         글발행
