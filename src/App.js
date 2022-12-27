@@ -33,6 +33,15 @@ function App() {
               <span>{good[i]}</span>
             </h1>
             <p>2월 17일 발행</p>
+            <button
+              onClick={(i) => {
+                let copy = [...content];
+                copy.splice(i, 1);
+                setContent(copy);
+              }}
+            >
+              글 삭제
+            </button>
           </div>
         );
       })}
