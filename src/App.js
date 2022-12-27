@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import "./App.css";
 
 function App() {
@@ -8,7 +8,11 @@ function App() {
     "엄마코트추천",
   ]);
   let [good, setGood] = useState([0, 0, 0]);
-  let [input, setInput] = useState();
+  let [input, setInput] = useState("");
+  const titleInputRef = useRef();
+  // useEffect(() => {
+
+  // }, [input]);
   return (
     <div className="App">
       {content.map((a, i) => {
@@ -34,9 +38,11 @@ function App() {
       })}
       <input
         className="blank"
+        value={input}
         onChange={(e) => {
           setInput(e.target.value);
         }}
+        ref={titleInputRef}
       ></input>
       <button
         onClick={(e) => {
@@ -46,11 +52,12 @@ function App() {
           let goodCopy = [...good];
           goodCopy.unshift(0);
           setGood(goodCopy);
+
+          return input == "" ? titleInputRef.current.focus() : setInput("");
         }}
       >
         글발행
       </button>
-      {input.value == null ? <div>ss</div> : null}
     </div>
   );
 }
