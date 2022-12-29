@@ -29,9 +29,10 @@ function App() {
     let copy = [...content];
     copy.unshift({ id: newId.current++, title: input, like: "0" });
     setContent(copy);
-    console.log(content);
-    content.sort((a, b) => b.id - a.id);
-    console.log(content[0]);
+    // 가장 큰 id 값 가진 게시물 찾기
+    // content.sort((a, b) => b.id - a.id);
+    // console.log(content[0]);
+
     // return input == "" ? titleInputRef.current.focus() : setInput("");
   };
 
