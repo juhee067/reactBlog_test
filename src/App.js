@@ -8,11 +8,11 @@ function App() {
   //   "엄마코트추천",
   // ]);
   // let [good, setGood] = useState([0, 0, 0]);
-  let count = 0;
+  const newId = useRef(3);
   let [content, setContent] = useState([
-    { id: count, title: "남자코트추천", like: "0" },
-    { id: count, title: "여자코트추천", like: "0" },
-    { id: count, title: "엄마코트추천", like: "0" },
+    { id: 2, title: "남자코트추천", like: "0" },
+    { id: 1, title: "여자코트추천", like: "0" },
+    { id: 0, title: "엄마코트추천", like: "0" },
   ]);
 
   let [input, setInput] = useState("");
@@ -27,9 +27,11 @@ function App() {
 
     setInput("");
     let copy = [...content];
-    copy.unshift({ id: count++, title: input, like: "0" });
+    copy.unshift({ id: newId.current++, title: input, like: "0" });
     setContent(copy);
     console.log(content);
+    content.sort((a, b) => b.id - a.id);
+    console.log(content[0]);
     // return input == "" ? titleInputRef.current.focus() : setInput("");
   };
 
