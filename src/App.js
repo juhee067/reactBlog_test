@@ -27,7 +27,7 @@ function App() {
 
     setInput("");
     let copy = [...content];
-    copy.unshift({ id: newId.current++, title: input, like: "0" });
+    copy.unshift({ id: newId.current++, title: input, like: "1" });
     setContent(copy);
     // 가장 큰 id 값 가진 게시물 찾기
     // content.sort((a, b) => b.id - a.id);
