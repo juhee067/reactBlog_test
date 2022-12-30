@@ -63,11 +63,11 @@ function App() {
   };
   // modal
   const AddModal = (index) => {
+    if (checkModal === true && checkID === content[index].id) {
+      return setCheckModal(false);
+    }
     setCheckModal(!checkModal);
-
     setCheckID(content[index].id);
-
-    // setModal(!modal);
   };
 
   return (
