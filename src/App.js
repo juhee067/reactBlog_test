@@ -63,10 +63,11 @@ function App() {
   };
   // modal
   const AddModal = (index) => {
+    console.log(checkModal, index, checkID, content[index].id);
     if (checkModal === true && checkID === content[index].id) {
       return setCheckModal(false);
     }
-    setCheckModal(!checkModal);
+    setCheckModal(true);
     setCheckID(content[index].id);
   };
 
