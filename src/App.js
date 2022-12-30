@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import "./App.css";
+import Modal from "./component/Modal";
 
 function App() {
   // let [content, setContent] = useState([
@@ -16,6 +17,10 @@ function App() {
   ]);
 
   let [input, setInput] = useState("");
+  let [checkModal, setCheckModal] = useState(false);
+  let [checkID, setCheckID] = useState("");
+
+  // let [modal, setModal] = useState(false);
   const titleInputRef = useRef();
 
   // addContent
@@ -27,6 +32,7 @@ function App() {
     setInput("");
     let copy = [...content];
     copy.unshift({ id: newId.current++, title: input, like: "0" });
+    // ++ : 후연산자
     copy.sort((a, b) => b.id - a.id);
     setContent(copy);
     // 가장 큰 id 값 가진 게시물 찾기
@@ -55,13 +61,27 @@ function App() {
     copy[index].title = "수정한 콘텐츠";
     setContent(copy);
   };
+  // modal
+  const AddModal = (index) => {
+    setCheckModal(!checkModal);
+
+    setCheckID(content[index].id);
+
+    // setModal(!modal);
+  };
 
   return (
     <div className="App">
       {content.map((a, index) => {
         return (
           <div className="content" key={index}>
-            <h1>{content[index].title}</h1>
+            <h1
+              onClick={() => {
+                AddModal(index);
+              }}
+            >
+              {content[index].title}
+            </h1>
 
             <button
               onClick={() => {
@@ -87,10 +107,9 @@ function App() {
             >
               글수정
             </button>
-            <div className="subContent">
-              <h5>{content[index].title}</h5>
-              <p>상세내용</p>
-            </div>
+            {checkModal == true && checkID == content[index].id ? (
+              <Modal content={content[index].title} />
+            ) : null}
           </div>
         );
       })}

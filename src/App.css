@@ -1,8 +1,10 @@
 .content{
   text-align: left;
   border-bottom: 1px solid #ddd;
+
+}
+.subContent{
+  padding: 30px 0;
+  background: #d0d0d0;
 }
 
-.subContent {
-  
-}
