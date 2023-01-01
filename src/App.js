@@ -62,13 +62,21 @@ function App() {
     setContent(copy);
   };
   // modal
+  // console.log(checkModal, index, checkID, content[index].id);
   const AddModal = (index) => {
-    console.log(checkModal, index, checkID, content[index].id);
-    if (checkModal === true && checkID === content[index].id) {
-      return setCheckModal(false);
-    }
+    // if (checkModal === true && checkID === content[index].id) {
+    //   return setCheckModal(false);
+    // }
+
     setCheckModal(true);
     setCheckID(content[index].id);
+    console.log(checkModal);
+  };
+  // 가나다 정렬
+  const arrayContent = () => {
+    let copy = [...content];
+    copy.sort((a, b) => b.title - a.title);
+    setContent(copy);
   };
 
   return (
@@ -125,9 +133,21 @@ function App() {
       <button
         onClick={() => {
           addContent();
+          // onKeyUp={() => {
+          //   if (window.event.keyCode === 13) {
+          //     addContent();
+          //   }
+          // }}
         }}
       >
         글발행
+      </button>
+      <button
+        onClick={() => {
+          arrayContent();
+        }}
+      >
+        가나다정렬
       </button>
     </div>
   );
